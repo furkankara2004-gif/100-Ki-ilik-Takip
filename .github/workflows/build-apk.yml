@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -23,9 +24,14 @@ jobs:
         run: |
           mkdir -p app/src/main/assets
           mkdir -p app/src/main/java/com/ornek/yuzkisiliktakip
+          mkdir -p app/src/main/res/drawable-nodpi
+
           cp AndroidManifest.xml app/src/main/AndroidManifest.xml
           cp MainActivity.java app/src/main/java/com/ornek/yuzkisiliktakip/MainActivity.java
           cp index.html app/src/main/assets/index.html
+          cp selami_icon.png app/src/main/assets/selami_icon.png
+          cp selami_icon.png app/src/main/res/drawable-nodpi/app_icon.png
+
           cat > app/build.gradle <<'EOF'
           plugins {
               id 'com.android.application'
@@ -37,8 +43,8 @@ jobs:
                   applicationId 'com.ornek.yuzkisiliktakip'
                   minSdk 23
                   targetSdk 35
-                  versionCode 1
-                  versionName '1.0'
+                  versionCode 3
+                  versionName '3.0'
               }
           }
           EOF
@@ -48,6 +54,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: 100-kisilik-takip-apk
+          name: selami-12-hafta-apk
           path: app/build/outputs/apk/debug/app-debug.apk
-          
