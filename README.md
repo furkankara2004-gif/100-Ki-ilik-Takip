@@ -1,12 +1,8 @@
-# 100 Kişilik Takip — Android proje
+# 12 Haftada Selami Nasıl Olunur
 
-Bu proje HTML takip uygulamasını Android WebView içinde çalıştırır. İşaretlemeler WebView yerel depolamasında saklanır.
+Android WebView uygulaması. Ana ekran adı ve simgesi sağlanan portre görseliyle güncellendi.
+İşaretlenen egzersiz ilerlemesi cihazın WebView yerel depolamasında tutulur.
 
-## APK üretimi (GitHub Actions)
-1. Bu ZIP'i açıp içeriğini yeni bir GitHub deposuna yükleyin.
-2. Depoda **Actions** sekmesine girin.
-3. **Build Android APK** iş akışını çalıştırın (veya `main` dalına push edin).
-4. Tamamlanınca iş akışının **Artifacts** bölümünden `100-kisilik-takip-apk` dosyasını indirin.
-5. ZIP içindeki `app-debug.apk` dosyasını Android telefona aktararak kurun. İlk kurulumda Android, bilinmeyen kaynaklardan yüklemeye izin istemesi halinde ilgili izni açmanız gerekir.
-
-Bu çıktı test/kişisel kullanım için debug APK'dır; Play Store yayını için ayrıca release imzalama gerekir.
+## APK oluşturma
+Bu dosyaları GitHub deposunun kök dizinine yükleyin/değiştirin. Ardından Actions > Build Android APK > Run workflow.
+Başarılı çalıştırmanın Artifacts bölümünden `selami-12-hafta-apk` indirilir. ZIP içindeki `app-debug.apk` Android'e kurulabilir.
