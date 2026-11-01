@@ -2,80 +2,131 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#171717">
-<title>100 Kişilik Takip</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101010">
+<title>MAN OF STEEL – Fitness Tracker</title>
 <style>
-:root{color-scheme:dark;--bg:#101010;--panel:#1b1b1b;--line:#383838;--red:#c51f31;--muted:#aaa}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:20px 14px 40px}
-main{max-width:650px;margin:auto}.hero{padding:22px;border-radius:18px;background:linear-gradient(130deg,#a30e19,#171717 75%);box-shadow:0 10px 28px #0005}
-.eyebrow{font-size:11px;letter-spacing:2px;font-weight:800;opacity:.8}.title{font-size:27px;font-weight:850;margin:5px 0 20px}
-.stats{display:flex;justify-content:space-between;align-items:end}.caption{font-size:12px;opacity:.8}.big{font-size:40px;font-weight:900;line-height:1.2}.percent{font-size:30px;font-weight:850}
-.track{height:9px;background:#ffffff30;border-radius:20px;overflow:hidden;margin-top:14px}.fill{height:100%;width:0;background:#fff;border-radius:20px;transition:width .2s}
-.subrow{display:flex;justify-content:space-between;font-size:12px;opacity:.85;margin-top:8px}
-.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:24px 0 12px}.toolbar strong{font-size:17px}.hint{font-size:12px;color:var(--muted);margin-top:2px}
-button{font:inherit;cursor:pointer}.filter,.reset{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:#222;color:#fff;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
-.tile{min-height:59px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:#fff;font-weight:750;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
-.tile .mark{font-size:11px;color:#aaa}.tile.done{background:var(--red);border-color:var(--red)}.tile.done .mark{color:white}
-.legend{display:flex;gap:15px;color:var(--muted);font-size:12px;margin:14px 2px 22px}
-.footer{border:1px solid var(--line);border-radius:13px;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#181818}
-.footer strong{font-size:14px}.footer small{display:block;color:var(--muted);margin-top:3px;font-size:11px}
-.reset{background:#a71927;border:0;font-weight:700}.notice{text-align:center;color:var(--muted);font-size:12px;margin-top:13px}
-@media(min-width:520px){.grid{grid-template-columns:repeat(10,minmax(0,1fr))}.tile{min-height:55px}}
+:root{color-scheme:dark;--bg:#101010;--panel:#1b1b1b;--line:#383838;--red:#c51f31;--muted:#aaa;--white:#f7f7f7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:16px 13px 35px}
+main{max-width:700px;margin:auto;display:flex;flex-direction:column;gap:15px}
+.hero{background:linear-gradient(135deg,#3a080d,#171717 68%);border:1px solid #542027;border-radius:17px;padding:19px}
+.eyebrow{font-size:11px;letter-spacing:2px;font-weight:800;color:#ff8b98}.title{font-size:32px;font-weight:950;letter-spacing:-1px;margin:6px 0 2px}.red{color:#ed3348}.muted,.small{color:var(--muted)}.small{font-size:11px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}.metric{background:#202020;border-radius:10px;padding:10px}.metric label{display:block;color:#aaa;font-size:10px}.metric strong{font-size:21px}
+.flex{display:flex;align-items:center;justify-content:space-between;gap:9px}.bar{height:7px;background:#383838;border-radius:20px;overflow:hidden}.bar>div{height:100%;background:#df293f;border-radius:20px;transition:width .2s}
+.panel{background:var(--panel);border:1px solid #343434;border-radius:13px;padding:13px}.section-title{font-size:13px;font-weight:800;letter-spacing:.3px}.pill{font-size:10px;border-radius:5px;padding:4px 7px;background:#3a2024;color:#ff9ba6;white-space:nowrap}
+.weeks{display:flex;flex-wrap:wrap;gap:7px}.week,.day,.action{border:1px solid #444;background:#202020;color:#fff;border-radius:9px;padding:9px 11px;font-size:12px;font-weight:650}
+.week.active,.day.active{background:#bd1f32;border-color:#bd1f32}.days{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.day{padding:10px 3px;min-width:0}
+.exercise{width:100%;background:#202020;border:1px solid #383838;border-radius:11px;padding:12px;display:flex;align-items:center;gap:10px;color:#fff;text-align:left}
+.exercise.done{border-color:#b52639;background:#29191c}.check{width:23px;height:23px;flex:none;border:1.5px solid #777;border-radius:7px;display:grid;place-items:center}.done .check{background:#c32136;border-color:#c32136}
+.exercise-name{font-size:13px;font-weight:700;display:block}.exercise-meta{font-size:11px;color:#aaa;display:block;margin-top:3px}.rir{font-size:11px;color:#ff8290;font-weight:800;white-space:nowrap}
+.exercise-list{display:flex;flex-direction:column;gap:8px}.rules{font-size:12px;line-height:1.8;color:#aaa}.rules b{color:#fff}
+.dayschedule{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.schedule-item{background:#202020;border-radius:10px;padding:10px;font-size:12px}.schedule-item b{color:#ff6577;display:block;font-size:11px;margin-bottom:4px}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #ff6a7a;outline-offset:2px}
+@media(min-width:540px){body{padding:24px}.weeks{gap:9px}}
 </style>
 </head>
 <body>
 <main>
 <section class="hero">
-<div class="eyebrow">KİŞİ TAKİP SİSTEMİ</div>
-<div class="title">100 Kişilik Takip</div>
-<div class="stats">
-<div><div class="caption">Tamamlanan</div><div class="big" id="doneCount">0</div></div>
-<div style="text-align:right"><div class="caption">İlerleme</div><div class="percent" id="percent">0%</div></div>
-</div>
-<div class="track"><div class="fill" id="progress"></div></div>
-<div class="subrow"><span id="remaining">100 kişi kaldı</span><span>100 kişi</span></div>
+ <div class="flex"><div class="eyebrow">12 WEEK TRANSFORMATION</div><span class="pill">TRAINING PROGRAM</span></div>
+ <div class="title">MAN OF <span class="red">STEEL.</span></div><div class="small">GÜÇLEN • GELİŞ • DÖNÜŞ</div>
+ <div class="grid3">
+  <div class="metric"><label>PROGRAM</label><strong>12 <small>HAFTA</small></strong></div>
+  <div class="metric"><label>FAZ</label><strong id="phaseNo">01</strong></div>
+  <div class="metric"><label>TAMAMLANAN</label><strong id="totalDone">0</strong></div>
+ </div>
+ <div class="flex" style="font-size:11px;margin:15px 0 7px"><span>GENEL İLERLEME</span><b id="overallPct">0%</b></div>
+ <div class="bar"><div id="overallBar" style="width:0%"></div></div>
 </section>
-<div class="toolbar">
-<div><strong>Kişi listesi</strong><div class="hint">Kutulara dokunarak işaretle</div></div>
-<button class="filter" id="filter">Tümü ▾</button>
-</div>
-<div class="grid" id="grid"></div>
-<div class="legend"><span>⬛ Bekliyor</span><span style="color:#ef5968">■ Tamamlandı</span></div>
-<section class="footer">
-<div><strong>Takip verileri</strong><small id="saveStatus">Otomatik kayıt açık</small></div>
-<button class="reset" id="reset">Sıfırla</button>
+
+<section class="panel">
+ <div class="flex" style="margin-bottom:12px"><b class="section-title">ANTRENMAN TAKVİMİ</b><span class="small">12 HAFTALIK PLAN</span></div>
+ <div class="weeks" id="weeks"></div>
+ <div class="flex" style="margin-top:15px;align-items:flex-start"><div><div class="small" id="phaseLabel">FAZ 1</div><b id="phaseTitle">Temel Adaptasyon</b></div><span class="pill" id="phaseGoal">RPT & RP</span></div>
+ <div class="small" id="phaseDesc" style="margin-top:7px">Form öğren, güç geliştir, adaptasyon kazan.</div>
 </section>
-<div class="notice" id="notice" role="status">Başlamak için bir numaraya dokun.</div>
+
+<section>
+ <div class="flex" style="margin-bottom:9px"><b class="section-title">HAFTALIK ANTRENMAN</b><span class="small" id="weekLabel">1. HAFTA</span></div>
+ <div class="days" id="days"></div>
+</section>
+
+<section class="panel">
+ <div class="flex" style="align-items:flex-start;margin-bottom:12px"><div><div class="red" style="font-size:11px;font-weight:800" id="dayType">İTİŞ GÜNÜ</div><b style="font-size:18px" id="dayName">Göğüs + Omuz + Triceps</b></div><span class="pill" id="exerciseCount">0 HAREKET</span></div>
+ <div class="flex" style="font-size:11px;margin-bottom:7px"><span class="muted">ANTRENMAN TAMAMLAMA</span><b id="dayPct">0%</b></div>
+ <div class="bar" style="margin-bottom:12px"><div id="dayBar" style="width:0%"></div></div>
+ <div class="exercise-list" id="exerciseList"></div>
+ <div class="flex" style="border-top:1px solid #383838;padding-top:12px;margin-top:12px"><span class="small" id="dayStatus">Başlamak için hareketleri işaretle.</span><button class="action" id="clearDay">Günü sıfırla</button></div>
+</section>
+
+<section class="panel">
+ <b class="section-title">HAFTALIK DÜZEN</b>
+ <div class="dayschedule" style="margin-top:10px">
+  <div class="schedule-item"><b>PAZARTESİ</b>İtiş – Göğüs, Omuz, Triceps</div>
+  <div class="schedule-item"><b>SALI</b>Çekiş – Sırt, Biceps</div>
+  <div class="schedule-item"><b>ÇARŞAMBA</b>Bacak</div>
+  <div class="schedule-item"><b>CUMA</b>Üst Vücut</div>
+  <div class="schedule-item"><b style="color:#aaa">PERŞEMBE</b>Dinlenme</div>
+  <div class="schedule-item"><b style="color:#aaa">CUMARTESİ / PAZAR</b>Dinlenme</div>
+ </div>
+</section>
+
+<section class="panel">
+ <b class="section-title">PROGRAM KURALLARI</b>
+ <div class="rules" style="margin-top:8px">
+  ⏱ Set arası dinlenme: <b>2–3 dakika</b><br>
+  ⏱ Hareket arası dinlenme: <b>1 dakika</b><br>
+  🚶 Kardiyo: <b>15 dk, 10 eğim, 5 hız</b> (veya bisiklet)<br>
+  🥗 Kalori fazlası: <b>+300–400 kcal/gün</b><br>
+  🥩 Protein: <b>2 g/kg</b><br>
+  🥑 Yağ: <b>0,8 g/kg</b><br>
+  🍚 Karbonhidrat: <b>Kalan kalori</b>
+ </div>
+ <div class="small" style="border-top:1px solid #383838;padding-top:9px;margin-top:9px;line-height:1.7">RPT: İlk set ağır, sonraki setlerde ağırlığı azaltıp tekrar artır. RP: Set bitiminde 10–15 saniye dinlenip 3–5 tekrar daha yap. SS: İki hareketi dinlenmeden uygula.</div>
+</section>
+<div class="flex"><span class="small">Kayıtlar bu cihazda saklanır.</span><button class="action" id="resetAll" style="border-color:#7c2631;color:#ff9ba6">Tüm ilerlemeyi sıfırla</button></div>
+<div class="small" style="text-align:center;letter-spacing:3px">DISCIPLINE OVER MOTIVATION.</div>
 </main>
 <script>
 (()=>{
- const KEY='takip100_v1';
- let done=new Set(),filter='all';
- try{const v=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(v))done=new Set(v.filter(n=>Number.isInteger(n)&&n>=1&&n<=100));}catch(e){}
- const $=id=>document.getElementById(id);
- function save(){try{localStorage.setItem(KEY,JSON.stringify([...done]));$('saveStatus').textContent='Otomatik kaydedildi';}catch(e){$('saveStatus').textContent='Bu tarayıcıda kayıt yapılamadı';}}
- function render(){
-  const grid=$('grid');grid.replaceChildren();
-  for(let n=1;n<=100;n++){
-   if(filter==='done'&&!done.has(n))continue;
-   if(filter==='pending'&&done.has(n))continue;
-   const b=document.createElement('button');b.type='button';b.className='tile'+(done.has(n)?' done':'');
-   b.setAttribute('aria-label',n+'. kişi '+(done.has(n)?'tamamlandı':'bekliyor'));
-   const number=document.createElement('span');number.textContent=n;
-   const mark=document.createElement('span');mark.className='mark';mark.textContent=done.has(n)?'✓ Tamam':'○ Bekliyor';
-   b.append(number,mark);
-   b.addEventListener('click',()=>{if(done.has(n))done.delete(n);else done.add(n);save();render();$('notice').textContent=n+'. kişi '+(done.has(n)?'tamamlandı olarak işaretlendi.':'işareti kaldırıldı.');});
-   grid.appendChild(b);
-  }
-  const count=done.size;$('doneCount').textContent=count;$('percent').textContent=count+'%';
-  $('progress').style.width=count+'%';$('remaining').textContent=(100-count)+' kişi kaldı';
-  $('filter').textContent=filter==='all'?'Tümü ▾':filter==='done'?'Tamamlananlar ▾':'Bekleyenler ▾';
- }
- $('filter').addEventListener('click',()=>{filter=filter==='all'?'done':filter==='done'?'pending':'all';render();});
- $('reset').addEventListener('click',()=>{if(!confirm('Tüm işaretlemeleri sıfırlamak istiyor musun?'))return;done.clear();filter='all';save();render();$('notice').textContent='Tüm işaretlemeler sıfırlandı.';});
- render();
+const $=id=>document.getElementById(id);
+const ex=(name,sets,reps,rir)=>({name,sets,reps,rir});
+const push1=[ex('Machine Shoulder Press',3,'6-8-10 (RPT)','1-2'),ex('Incline Dumbbell Press',3,'8-10','1-2'),ex('Machine Pec Deck',3,'10-12','1-2'),ex('DB Lateral Raise',3,'12 + Son Set RP','0'),ex('Rope Pushdown',3,'12 + Son Set RP','0')];
+const pull1=[ex('Lat Pulldown',3,'6-8-10 (RPT)','1-2'),ex('Chest Supported DB Row',3,'8-10','1-2'),ex('Seated Cable Row',3,'10','1-2'),ex('Facepull',3,'15','0'),ex('EZ Barbell Curl',3,'10','0'),ex('Reverse Grip Ez Bar Curl',3,'15','0')];
+const leg1=[ex('Leg Extension',3,'12','1-2'),ex('Hack Squat',3,'6-8-10 (RPT)','1-2'),ex('Leg Curl',3,'12','1-2'),ex('Walking Lunge',2,'20 (Bacak Başı)','0'),ex('Seated Calf Raise',4,'15','0')];
+const upper1=[ex('Machine Shoulder Press',3,'6-8-10 (RPT)','1-2'),ex('Lat Pulldown',3,'6-8-10 (RPT)','1-2'),ex('Incline Dumbbell Press',3,'6-8-10 (RPT)','1-2'),ex('SS Straight Arm Pulldown',3,'12','0'),ex('SS Middle Cable Chest Fly',3,'12','0'),ex('DB Lateral Raise',3,'12','0'),ex('Triceps V-Bar Pushdown',2,'12','0'),ex('Hammer Curl',2,'12','0')];
+const push2=[ex('Seated DB Shoulder Press',4,'8-10','1-2'),ex('SM Incline Bench Press',3,'10','1-2'),ex('SS Middle Cable Chest Fly',3,'12','0'),ex('SS Push Up',3,'Max','0'),ex('DB Lateral Raise',3,'15 + Drop','0'),ex('Rope Pushdown',3,'12','0')];
+const pull2=[ex('Reverse Grip Lat Pulldown',4,'10','1-2'),ex('Seated Row Machine',3,'8-10','1-2'),ex('One Arm DB Row',3,'12','0'),ex('Facepull',3,'15','0'),ex('SS EZ Bar Curl',3,'10','0'),ex('SS Hammer Curl',3,'12','0')];
+const leg2=[ex('Hack Squat',4,'10','1-2'),ex('Leg Extension',2,'12 + Son Set RP','0'),ex('Leg Curl',2,'12 + Son Set RP','0'),ex('Walking Lunge',2,'20 (Bacak Başı)','0'),ex('Seated Calf Raise',4,'15','0')];
+const upper2=[ex('Incline Dumbbell Press',3,'8','1-2'),ex('Normal Grip Lat Pulldown',3,'10','1-2'),ex('Seated DB Shoulder Press',3,'8','1-2'),ex('Wide Grip Cable Row',2,'12 + Son Set RP','0'),ex('Machine Chest Press',2,'12 + Son Set RP','0'),ex('DB Lateral Raise',3,'12','0'),ex('Reverse Grip Ez Bar Curl',3,'15','0'),ex('One Arm Triceps Pushdown',3,'10','0')];
+const push3=[ex('Incline Dumbbell Press',2,'6-8 (RPT)','1-2'),ex('Machine Shoulder Press',3,'8','1-2'),ex('Machine Pec Deck',3,'10-12','1-2'),ex('DB Lateral Raise',3,'12 + Son Set RP','0'),ex('V-Bar Triceps Pushdown',3,'12 + Son Set RP','0')];
+const pull3=[ex('Lat Pulldown',2,'8-10 (RPT)','1-2'),ex('Chest Supported DB Row',3,'8-10','1-2'),ex('Reverse Grip Lat Pulldown',3,'10','1-2'),ex('Reverse Pec Deck',3,'15','0'),ex('Cable Straight Bar Curl',3,'10','0'),ex('Reverse Grip Ez Bar Curl',3,'15','0')];
+const leg3=[ex('Leg Extension',2,'12 + Son Set RP','1-2'),ex('Hack Squat',3,'6-8-10 (RPT)','1-2'),ex('Leg Curl',2,'12 + Son Set RP','1-2'),ex('Walking Lunge',2,'20 (Bacak Başı)','0'),ex('Seated Calf Raise',4,'15','0')];
+const phases=[
+ {name:'Temel Adaptasyon',method:'RPT & RP',goal:'Form öğren, güç geliştir, adaptasyon kazan.',days:[push1,pull1,leg1,upper1]},
+ {name:'Hacim Artışı',method:'Straight & Superset',goal:'Hacim, kas dayanıklılığı ve pump geliştirmek.',days:[push2,pull2,leg2,upper2]},
+ {name:'Yoğunluk + Güç Odaklı',method:'RPT & RP',goal:'Kas sertliği, güç ve form koruma.',days:[push3,pull3,leg3,upper1]}
+];
+const dayMeta=[['Pazartesi','İtiş Günü','Göğüs + Omuz + Triceps'],['Salı','Çekiş Günü','Sırt + Biceps'],['Çarşamba','Bacak Günü','Bacak'],['Cuma','Üst Vücut Günü','Göğüs + Sırt + Omuz + Biceps + Triceps']];
+let week=1,day=0,completed={};try{completed=JSON.parse(localStorage.getItem('mos_progress_v1')||'{}')||{};}catch(e){}
+const key=(w,d,i)=>w+'-'+d+'-'+i,phase=()=>phases[Math.floor((week-1)/4)],workouts=()=>phase().days;
+function save(){try{localStorage.setItem('mos_progress_v1',JSON.stringify(completed));}catch(e){$('dayStatus').textContent='Tarayıcı kayıt alanı kullanılamıyor.';}}
+function render(){
+ $('weeks').replaceChildren();
+ for(let w=1;w<=12;w++){let b=document.createElement('button');b.className='week'+(w===week?' active':'');b.textContent='HAFTA '+w;b.onclick=()=>{week=w;render();};$('weeks').appendChild(b);}
+ let p=phase(),phaseIndex=phases.indexOf(p);$('phaseNo').textContent='0'+(phaseIndex+1);$('phaseLabel').textContent='FAZ '+(phaseIndex+1);$('phaseTitle').textContent=p.name;$('phaseGoal').textContent=p.method;$('phaseDesc').textContent=p.goal;$('weekLabel').textContent=week+'. HAFTA';
+ $('days').replaceChildren();dayMeta.forEach((d,i)=>{let b=document.createElement('button');b.className='day'+(day===i?' active':'');b.innerHTML='<b>'+d[0]+'</b><br><span style="opacity:.8">'+['İtiş','Çekiş','Bacak','Üst'][i]+'</span>';b.onclick=()=>{day=i;render();};$('days').appendChild(b);});
+ $('dayType').textContent=dayMeta[day][1].toUpperCase();$('dayName').textContent=dayMeta[day][2];
+ let list=workouts()[day],count=0;$('exerciseCount').textContent=list.length+' HAREKET';$('exerciseList').replaceChildren();
+ list.forEach((item,i)=>{let done=!!completed[key(week,day,i)];if(done)count++;let b=document.createElement('button');b.className='exercise'+(done?' done':'');b.innerHTML='<span class="check">'+(done?'✓':'')+'</span><span style="flex:1;min-width:0"><span class="exercise-name">'+item.name+'</span><span class="exercise-meta">'+item.sets+' set · '+item.reps+' tekrar</span></span><span class="rir">RIR '+item.rir+'<br><span class="small">'+(done?'TAMAM':'İŞARETLE')+'</span></span>';b.onclick=()=>{let k=key(week,day,i);completed[k]=!completed[k];save();render();};$('exerciseList').appendChild(b);});
+ let pct=Math.round(count/list.length*100);$('dayPct').textContent=pct+'%';$('dayBar').style.width=pct+'%';$('dayStatus').textContent=count===list.length?'Antrenman tamamlandı!':count+' / '+list.length+' hareket tamamlandı.';
+ $('totalDone').textContent=Object.values(completed).filter(Boolean).length;
+ let total=0,done=0;for(let w=1;w<=12;w++){let ph=phases[Math.floor((w-1)/4)];ph.days.forEach((arr,d)=>arr.forEach((x,i)=>{total++;if(completed[key(w,d,i)])done++;}));}
+ let overall=Math.round(done/total*100);$('overallPct').textContent=overall+'%';$('overallBar').style.width=overall+'%';
+}
+$('clearDay').onclick=()=>{if(!confirm('Bu haftanın bu günündeki işaretlemeler silinsin mi?'))return;workouts()[day].forEach((x,i)=>delete completed[key(week,day,i)]);save();render();};
+$('resetAll').onclick=()=>{if(!confirm('12 haftalık tüm ilerleme silinsin mi?'))return;completed={};save();render();};
+render();
 })();
 </script>
 </body>
